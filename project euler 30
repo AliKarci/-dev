@@ -1,0 +1,11 @@
+var result = 0;
+
+for(var i = 100; i < 355000; i++) {
+    let digits = i.toString().split("");
+    digits = digits.map( n => parseInt(n) );
+    let sum = digits.reduce( (acc, digit) => acc + digit**5, 0 );
+    if(sum == i) console.log(digits, i);
+    if(sum == i) result += i;
+}
+
+console.log(result);
