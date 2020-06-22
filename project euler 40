@@ -1,0 +1,8 @@
+let string = "0";
+let counter = 1;
+
+while (string.length < 100000001) {
+	string += counter ++;
+}
+
+console.log(string[1e0] * string[1e1] * string[1e2] * string[1e3] * string[1e4] * string[1e5] * string[1e6]);
