@@ -1,0 +1,29 @@
+function* generatePrimes(limit) {
+  const notPrime = {};
+  let valueToCheck = 2;
+  while (valueToCheck <= limit) {
+    if (!(valueToCheck in notPrime)) {
+      yield valueToCheck;
+      notPrime[valueToCheck ** 2] = [valueToCheck];
+    } else {
+      let primes = notPrime[valueToCheck];
+      primes.forEach((prime) => {
+        let nextMultipleOfPrime = prime + valueToCheck;
+        if (nextMultipleOfPrime in notPrime) {
+          notPrime[nextMultipleOfPrime].push(prime);
+        } else {
+          notPrime[nextMultipleOfPrime] = [prime];
+        }
+      });
+      delete notPrime[valueToCheck];
+    }
+    valueToCheck += 1;
+  }
+}
+let gen = generatePrimes(2000000);
+let primesArray = [];
+for(let i = 0; i < 2000000; i ++) {
+  primesArray.push(gen.next().value);
+}
+const primesBelow = primesArray.filter(Boolean).reduce((acc, val) => acc + val)
+console.log(primesBelow);
