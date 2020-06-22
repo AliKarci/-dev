@@ -1,0 +1,8 @@
+const factorial = n => {
+	if (n === 1n) return n;
+  return factorial(n - 1n) * n;
+};
+
+const str = factorial(100n).toString();
+const sum = str.split("").reduce((sum, dig) => sum + Number(dig), 0);
+console.log(sum);
